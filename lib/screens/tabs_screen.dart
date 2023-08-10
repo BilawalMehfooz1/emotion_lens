@@ -1,3 +1,4 @@
+import 'package:emotion_lens/screens/add_place_screen.dart';
 import 'package:emotion_lens/screens/favorite_places_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:emotion_lens/screens/home_screen.dart';
@@ -22,6 +23,11 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     Widget activePage = const HomeScreen();
     String activePageTitle = 'Your Places';
+
+    if (_selectedPageIndex == 1) {
+      activePage = const AddPlaceScreen();
+      activePageTitle = 'Add new Place';
+    }
 
     if (_selectedPageIndex == 2) {
       activePage = const FavoritePlacesScreen();

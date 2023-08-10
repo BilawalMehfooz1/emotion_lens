@@ -3,6 +3,7 @@ import 'package:emotion_lens/models/theme.dart';
 import 'package:emotion_lens/screens/tabs_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       theme: lightTheme,
