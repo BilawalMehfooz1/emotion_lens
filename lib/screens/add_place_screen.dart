@@ -1,4 +1,6 @@
 import 'package:emotion_lens/providers/add_place_provider.dart';
+import 'package:emotion_lens/providers/change_screen_provider.dart';
+import 'package:emotion_lens/widgets/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,6 +22,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
     }
 
     ref.read(addPlacesProvider.notifier).addPlace(enteredTitle);
+    ref.read(changeScreenProvider.notifier).changeScreen(0);
   }
 
   @override
@@ -39,6 +42,8 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               decoration: const InputDecoration(labelText: 'Title'),
               controller: _titleController,
             ),
+            const SizedBox(height: 12),
+            const ImageInput(),
             const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: _savePlace,
