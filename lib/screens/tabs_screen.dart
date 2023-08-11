@@ -1,39 +1,15 @@
-import 'package:emotion_lens/screens/add_place_screen.dart';
-import 'package:emotion_lens/screens/favorite_places_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:emotion_lens/screens/home_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:emotion_lens/providers/change_screen_provider.dart';
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
-}
-
-class _TabsScreenState extends State<TabsScreen> {
-  int _selectedPageIndex = 0;
-
-  void _selectPage(int index) {
-    setState(() {
-      _selectedPageIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget activePage = const HomeScreen();
-    String activePageTitle = 'Your Places';
-
-    if (_selectedPageIndex == 1) {
-      activePage = const AddPlaceScreen();
-      activePageTitle = 'Add new Place';
-    }
-
-    if (_selectedPageIndex == 2) {
-      activePage = const FavoritePlacesScreen();
-      activePageTitle = 'Favorite Places';
-    }
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    final changeScreenState = ref.watch(changeScreenProvider); 
+    final currentScreenData = ref.read(changeScreenProvider.notifier).currentScreenData;
+    
     return Scaffold(
       // AppBar
       appBar: AppBar(
@@ -42,7 +18,7 @@ class _TabsScreenState extends State<TabsScreen> {
           onPressed: () {},
           tooltip: 'Settings',
         ),
-        title: Text(activePageTitle),
+        title: Text(currentScreenData.item2), // Using the title from Tuple
         actions: [
           IconButton(
             icon: const Icon(Icons.book, color: Colors.black),
@@ -54,8 +30,10 @@ class _TabsScreenState extends State<TabsScreen> {
 
       //Bottom NavigationBar
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectPage,
-        currentIndex: _selectedPageIndex,
+        onTap: (index) {
+          ref.read(changeScreenProvider.notifier).changeScreen(index); // Changing the screen using notifier
+        },
+        currentIndex: changeScreenState, // Using the state as currentIndex
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.place),
@@ -71,7 +49,7 @@ class _TabsScreenState extends State<TabsScreen> {
           )
         ],
       ),
-      body: activePage,
+      body: currentScreenData.item1, // Using the widget from Tuple
     );
   }
 }

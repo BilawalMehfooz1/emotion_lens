@@ -12,10 +12,7 @@ class HomeScreen extends ConsumerWidget {
       itemCount: placesList.length,
       itemBuilder: (context, index) {
         return Card(
-          margin: const EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 10,
-          ),
+          margin: const EdgeInsets.all(10),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(placesList[index].title),
