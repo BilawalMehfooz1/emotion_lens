@@ -1,16 +1,21 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
-  const ImageInput({super.key});
+  const ImageInput({
+    super.key,
+    required this.onSelectImage,
+  });
+
+  final void Function(File image) onSelectImage;
 
   @override
   State<ImageInput> createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
+  String? _lastImageType;
   File? _selectedImage;
 
   // Taken by camera
@@ -23,14 +28,39 @@ class _ImageInputState extends State<ImageInput> {
     if (pickedImage == null) {
       return;
     }
+
     setState(() {
       _selectedImage = File(pickedImage.path);
+      _lastImageType = 'camera';
     });
+
+    widget.onSelectImage(_selectedImage!);
   }
 
-  void _fromGalleryImage() async{
+  // Picture from gallery
+  void _fromGalleryImage() async {
     final imagePicker = ImagePicker();
-    final pickedImage=await imagePicker.pickImage(source: ImageSource.gallery);
+    final pickedImage = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 600,
+    );
+    if (pickedImage == null) {
+      return;
+    }
+    setState(() {
+      _selectedImage = File(pickedImage.path);
+      _lastImageType = 'gallery';
+    });
+    widget.onSelectImage(_selectedImage!);
+  }
+
+  // Method to change picture by tapping on selected picture
+  void _onTapImage() {
+    if (_lastImageType == 'camera') {
+      _takePicture();
+    } else {
+      _fromGalleryImage();
+    }
   }
 
   @override
@@ -54,7 +84,7 @@ class _ImageInputState extends State<ImageInput> {
 
     if (_selectedImage != null) {
       content = GestureDetector(
-        onTap: _takePicture,
+        onTap: _onTapImage,
         child: Image.file(
           _selectedImage!,
           fit: BoxFit.cover,

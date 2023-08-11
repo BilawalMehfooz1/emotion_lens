@@ -7,21 +7,22 @@ class TabsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final changeScreenState = ref.watch(changeScreenProvider); 
-    final currentScreenData = ref.read(changeScreenProvider.notifier).currentScreenData;
-    
+    final changeScreenState = ref.watch(changeScreenProvider);
+    final currentScreenData =
+        ref.read(changeScreenProvider.notifier).currentScreenData;
+
     return Scaffold(
       // AppBar
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.settings, color: Colors.black),
-          onPressed: () {},
-          tooltip: 'Settings',
-        ),
         title: Text(currentScreenData.item2), // Using the title from Tuple
         actions: [
           IconButton(
-            icon: const Icon(Icons.book, color: Colors.black),
+            icon: const Icon(Icons.menu_book),
+            onPressed: () {},
+            tooltip: 'Daily Ayat',
+          ),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
             onPressed: () {},
             tooltip: 'Daily Ayat',
           ),
@@ -31,20 +32,31 @@ class TabsScreen extends ConsumerWidget {
       //Bottom NavigationBar
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
-          ref.read(changeScreenProvider.notifier).changeScreen(index); // Changing the screen using notifier
+          ref
+              .read(changeScreenProvider.notifier)
+              .changeScreen(index); // Changing the screen using notifier
         },
         currentIndex: changeScreenState, // Using the state as currentIndex
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.place),
-            label: 'Places',
+            icon: Icon(
+              Icons.home_outlined,
+              size: 30,
+            ),
+            label: 'Memories',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
+            icon: Icon(
+              Icons.add_circle_outline,
+              size: 30,
+            ),
             label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(
+              Icons.favorite,
+              size: 30,
+            ),
             label: 'Favorites',
           )
         ],

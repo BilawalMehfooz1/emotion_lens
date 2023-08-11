@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:emotion_lens/providers/add_place_provider.dart';
 import 'package:emotion_lens/providers/change_screen_provider.dart';
 import 'package:emotion_lens/widgets/image_input.dart';
@@ -13,15 +15,18 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
+  File? _selectedImage;
 
   void _savePlace() {
     final enteredTitle = _titleController.text;
 
-    if (enteredTitle.isEmpty) {
+    if (enteredTitle.isEmpty || _selectedImage == null) {
       return;
     }
 
-    ref.read(addPlacesProvider.notifier).addPlace(enteredTitle);
+    ref
+        .read(addPlacesProvider.notifier)
+        .addPlace(enteredTitle, _selectedImage!);
     ref.read(changeScreenProvider.notifier).changeScreen(0);
   }
 
@@ -43,7 +48,11 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               controller: _titleController,
             ),
             const SizedBox(height: 12),
-            const ImageInput(),
+            ImageInput(
+              onSelectImage: (image) {
+                _selectedImage = image;
+              },
+            ),
             const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: _savePlace,

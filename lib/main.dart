@@ -7,7 +7,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      theme: lightTheme,
+      // theme: lightTheme,
+      darkTheme: darkTheme,
       home: const ProviderScope(child: MyApp()),
     ),
   );

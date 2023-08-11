@@ -16,11 +16,11 @@ class ChangeScreenNotifier extends StateNotifier<int> {
   Tuple2<Widget, String> get currentScreenData {
     switch (state) {
       case 1:
-        return const Tuple2(AddPlaceScreen(), 'Add new Place');
+        return const Tuple2(AddPlaceScreen(), 'Add new Memory');
       case 2:
-        return const Tuple2(FavoritePlacesScreen(), 'Favorite Places');
+        return const Tuple2(FavoritePlacesScreen(), 'Favorite Memories');
       default:
-        return const Tuple2(HomeScreen(), 'Your Places');
+        return const Tuple2(HomeScreen(), 'Memories');
     }
   }
 }
