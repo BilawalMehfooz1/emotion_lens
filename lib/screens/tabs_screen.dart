@@ -14,11 +14,10 @@ class TabsScreen extends ConsumerWidget {
     return Scaffold(
       // AppBar
       appBar: AppBar(
-        title: Text(
-            currentScreenData.item2), // Using the title from Tuple
+        title: Text(currentScreenData.item2), // Using the title from Tuple
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu_book),
+            icon: const Icon(Icons.menu_book_outlined),
             onPressed: () {},
             tooltip: 'Daily Ayat',
           ),
@@ -36,6 +35,8 @@ class TabsScreen extends ConsumerWidget {
           ref.read(changeScreenProvider.notifier).changeScreen(index);
         },
         currentIndex: changeScreenState,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
         showSelectedLabels: false, // Globally hide labels when selected
         showUnselectedLabels: false, // Globally hide labels when not selected
         items: [
@@ -45,20 +46,11 @@ class TabsScreen extends ConsumerWidget {
               children: [
                 Icon(
                   changeScreenState == 0 ? Icons.home : Icons.home_outlined,
-                  size: 30,
+                  size: 25,
                 ),
-                Text(
+                const Text(
                   'Home',
-                  style: TextStyle(
-                    color: changeScreenState == 0
-                        ? const Color.fromRGBO(
-                            251,
-                            2,
-                            39,
-                            1,
-                          )
-                        : Colors.grey[700],
-                  ),
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
@@ -71,7 +63,7 @@ class TabsScreen extends ConsumerWidget {
                 changeScreenState == 1
                     ? Icons.add_circle
                     : Icons.add_circle_outline,
-                size: 40, 
+                size: 35,
               ),
             ),
             label: '',
@@ -84,20 +76,11 @@ class TabsScreen extends ConsumerWidget {
                   changeScreenState == 2
                       ? Icons.favorite
                       : Icons.favorite_border,
-                  size: 30,
+                  size: 25,
                 ),
-                Text(
+                const Text(
                   'Favorites',
-                  style: TextStyle(
-                    color: changeScreenState == 2
-                        ? const Color.fromRGBO(
-                            251,
-                            2,
-                            39,
-                            1,
-                          )
-                        : Colors.grey[700],
-                  ),
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),

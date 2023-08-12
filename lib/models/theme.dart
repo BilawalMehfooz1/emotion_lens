@@ -7,17 +7,15 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: Color.fromRGBO(251, 2, 39, 1),
   ),
-  primaryColor: const Color.fromRGBO(251, 2, 39, 1), // Red color
   scaffoldBackgroundColor: const Color.fromRGBO(255, 250, 240, 1.0),
   appBarTheme: AppBarTheme(
-    foregroundColor: const Color.fromRGBO(251, 2, 39, 1),
     elevation: 0,
     color: const Color.fromRGBO(255, 250, 240, 1.0),
-    titleTextStyle: TextStyle(
-      fontSize: 24.0,
-      color: Colors.grey[700],
+    titleTextStyle: GoogleFonts.euphoriaScript(
+      fontSize: 30.0,
+      color: Colors.black,
       fontWeight: FontWeight.bold,
     ),
   ),
-  textTheme: GoogleFonts.euphoriaScriptTextTheme(),
+  textTheme: GoogleFonts.montserratTextTheme(),
 );
