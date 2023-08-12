@@ -66,14 +66,13 @@ class _ImageInputState extends State<ImageInput> {
   @override
   Widget build(BuildContext context) {
     Widget content = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton.icon(
           onPressed: _takePicture,
           icon: const Icon(Icons.camera),
           label: const Text('Take Picture'),
         ),
-        const SizedBox(width: 6),
         TextButton.icon(
           onPressed: _fromGalleryImage,
           icon: const Icon(Icons.image),
