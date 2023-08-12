@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:emotion_lens/providers/change_screen_provider.dart';
 
@@ -9,12 +10,13 @@ class TabsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final changeScreenState = ref.watch(changeScreenProvider);
     final currentScreenData =
-        ref.read(changeScreenProvider.notifier).currentScreenData;
+        ref.read(changeScreenProvider.notifier).currentScreenData(context);
 
     return Scaffold(
       // AppBar
       appBar: AppBar(
-        title: Text(currentScreenData.item2), // Using the title from Tuple
+        title: SvgPicture.asset(
+            currentScreenData.item2), // Using the title from Tuple
         actions: [
           IconButton(
             icon: const Icon(Icons.menu_book),

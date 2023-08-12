@@ -12,15 +12,30 @@ class ChangeScreenNotifier extends StateNotifier<int> {
     state = index;
   }
 
-  // This method retrieves both the widget and its title based on the current index
-  Tuple2<Widget, String> get currentScreenData {
+  Tuple2<Widget, String> currentScreenData(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     switch (state) {
       case 1:
-        return const Tuple2(AddPlaceScreen(), 'Add new Memory');
+        return Tuple2(
+          const AddPlaceScreen(),
+          isDarkMode
+              ? 'assets/images/appbardark_title2.svg'
+              : 'assets/images/appbar_title2.svg',
+        );
       case 2:
-        return const Tuple2(FavoritePlacesScreen(), 'Favorite Memories');
+        return Tuple2(
+          const FavoritePlacesScreen(),
+          isDarkMode
+              ? 'assets/images/appbardark_title3.svg'
+              : 'assets/images/appbar_title3.svg',
+        );
       default:
-        return const Tuple2(HomeScreen(), 'Memories');
+        return Tuple2(
+          const HomeScreen(),
+          isDarkMode
+              ? 'assets/images/appbardark_title1.svg'
+              : 'assets/images/appbar_title1.svg',
+        );
     }
   }
 }
