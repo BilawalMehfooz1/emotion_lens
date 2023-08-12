@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
@@ -18,11 +19,5 @@ final ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.bold,
     ),
   ),
-  // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-  //   unselectedItemColor: Colors.grey[700],
-  //   selectedItemColor: const Color.fromRGBO(251, 2, 39, 1),
-  // ),
-  // iconTheme: IconThemeData(
-  //   color: Colors.grey[700],
-  // ),
+  textTheme: GoogleFonts.euphoriaScriptTextTheme(),
 );

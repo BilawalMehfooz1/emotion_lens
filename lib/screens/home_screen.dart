@@ -1,9 +1,21 @@
+import 'package:emotion_lens/models/place_structure.dart';
+import 'package:emotion_lens/screens/place_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:emotion_lens/providers/add_place_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
+
+  void _onTapPlace(BuildContext context, PlaceStructure place) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return PlaceDetailsScreen(place: place);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +30,9 @@ class HomeScreen extends ConsumerWidget {
       itemCount: placesList.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            _onTapPlace(context, placesList[index]);
+          },
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
