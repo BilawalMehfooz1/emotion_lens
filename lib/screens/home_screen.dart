@@ -18,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
       itemCount: placesList.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: (){},
+          onTap: () {},
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(

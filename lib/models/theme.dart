@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 
-final kColorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.redAccent, brightness: Brightness.light);
-
-final kDarkColorScheme = ColorScheme.fromSeed(
-  seedColor: Colors.red,
-  brightness: Brightness.dark,
-);
-final ThemeData lightTheme = ThemeData().copyWith(
+final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: kColorScheme,
-  appBarTheme: const AppBarTheme().copyWith(
-    elevation: 0,
-    foregroundColor: Colors.red[600],
-    backgroundColor: kColorScheme.background,
-    
+  brightness: Brightness.light,
+  colorScheme: const ColorScheme.light(
+    primary: Color.fromRGBO(251, 2, 39, 1),
   ),
-  // scaffoldBackgroundColor:
-);
-
-final ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    colorScheme: kDarkColorScheme,
-    appBarTheme: const AppBarTheme().copyWith(
-      elevation: 0,
-      backgroundColor: Colors.red[900],
+  primaryColor: const Color.fromRGBO(251, 2, 39, 1), // Red color
+  scaffoldBackgroundColor: const Color.fromRGBO(255, 250, 240, 1.0),
+  appBarTheme: AppBarTheme(
+    foregroundColor: const Color.fromRGBO(251, 2, 39, 1),
+    elevation: 0,
+    color: const Color.fromRGBO(255, 250, 240, 1.0),
+    titleTextStyle: TextStyle(
+      fontSize: 24.0,
+      color: Colors.grey[700],
+      fontWeight: FontWeight.bold,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.red[900],
-    ));
+  ),
+  // bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  //   unselectedItemColor: Colors.grey[700],
+  //   selectedItemColor: const Color.fromRGBO(251, 2, 39, 1),
+  // ),
+  // iconTheme: IconThemeData(
+  //   color: Colors.grey[700],
+  // ),
+);

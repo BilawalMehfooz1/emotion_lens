@@ -8,7 +8,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: lightTheme,
-      darkTheme: darkTheme,
+      // darkTheme: darkTheme,
       home: const ProviderScope(child: MyApp()),
     ),
   );

@@ -34,35 +34,79 @@ class TabsScreen extends ConsumerWidget {
       //Bottom NavigationBar
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
-          ref
-              .read(changeScreenProvider.notifier)
-              .changeScreen(index); // Changing the screen using notifier
+          ref.read(changeScreenProvider.notifier).changeScreen(index);
         },
-        currentIndex: changeScreenState, // Using the state as currentIndex
-        items: const [
+        currentIndex: changeScreenState,
+        showSelectedLabels: false, // Globally hide labels when selected
+        showUnselectedLabels: false, // Globally hide labels when not selected
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 30,
+            icon: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  changeScreenState == 0 ? Icons.home : Icons.home_outlined,
+                  size: 30,
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(
+                    color: changeScreenState == 0
+                        ? const Color.fromRGBO(
+                            251,
+                            2,
+                            39,
+                            1,
+                          )
+                        : Colors.grey[700],
+                  ),
+                ),
+              ],
             ),
-            label: 'Memories',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_circle_outline,
-              size: 30,
+            icon: Center(
+              // This centers the icon
+              child: Icon(
+                changeScreenState == 1
+                    ? Icons.add_circle
+                    : Icons.add_circle_outline,
+                size: 40, 
+              ),
             ),
-            label: 'Add',
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              size: 30,
+            icon: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  changeScreenState == 2
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  size: 30,
+                ),
+                Text(
+                  'Favorites',
+                  style: TextStyle(
+                    color: changeScreenState == 2
+                        ? const Color.fromRGBO(
+                            251,
+                            2,
+                            39,
+                            1,
+                          )
+                        : Colors.grey[700],
+                  ),
+                ),
+              ],
             ),
-            label: 'Favorites',
-          )
+            label: '',
+          ),
         ],
       ),
+
       body: currentScreenData.item1, // Using the widget from Tuple
     );
   }
