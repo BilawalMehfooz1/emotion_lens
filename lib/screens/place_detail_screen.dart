@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:emotion_lens/models/place_structure.dart';
 
 class PlaceDetailsScreen extends StatelessWidget {
@@ -50,7 +49,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.transparent,
+                        Colors.black45,
                         Colors.black87,
                       ],
                       begin: Alignment.topCenter,
